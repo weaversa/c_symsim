@@ -252,7 +252,7 @@ void cMemory_collect_probes(machine_state *ms, cMemory *cMem) {
   }
 }
 
-//Routined for handling symbolically addressed memory
+//Routines for handling symbolically addressed memory
 
 sMemory *sMemory_init(machine_state *ms, uint8_t address_size) {
   sMemory *sMem = (sMemory *)malloc(1 * sizeof(sMemory));
