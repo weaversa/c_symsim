@@ -132,14 +132,15 @@ Vector *vec_dup(machine_state *ms, Vector *src) {
 
 void vec_setAsInput(machine_state *ms, Vector *vec, char name[1024]) {
   char *buf;
-  uintmax_t i;
+  intmax_t i;
 
   if(ms->ntk->vNamesIn == NULL) {
     ms->ntk->vNamesIn = Vec_PtrAlloc(100);
   }
 
   vec->isSymbolic = 1;
-  for(i = 0; i < vec->size; i++) {
+  //Big bit endian
+  for(i = vec->size-1; i >= 0; i--) {
     buf = (char *)malloc(1024 * sizeof(char));    
     snprintf(buf, 1024, "%s_%ju", name, i);
     vec->symWord[i] = Gia_ManAppendCi(ms->ntk);
@@ -175,12 +176,13 @@ Vector **vec_getInputArray(machine_state *ms, uintmax_t num_arr_elements, uintma
 
 void vec_setAsOutput(machine_state *ms, Vector *vec, char name[1024]) {
   char *buf;
-  uintmax_t i;
+  intmax_t i;
 
   if(!vec->isSymbolic)
     vec_calc_sym(ms, vec);
-  
-  for(i = 0; i < vec->size; i++) {
+
+  //Big bit endian
+  for(i = vec->size-1; i >= 0; i--) {
     buf = (char *)malloc(1024 * sizeof(char));
     snprintf(buf, 1024, "%s_%ju", name, i);
     Gia_Probe_t tmp_output_probe = Gia_SweeperProbeCreate(ms->ntk, vec->symWord[i]);
