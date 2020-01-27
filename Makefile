@@ -14,8 +14,8 @@ SYMSIMLIB = symsimabc
 LIBABC_DIR = lib/abc
 
 CC = gcc
-DBG = #-g -Wall -fstack-protector-all -pedantic
-OPT = -march=native -O3 -DNDEBUG -ffast-math -fomit-frame-pointer
+DBG = -g -Wall -fstack-protector-all -pedantic
+OPT = #-march=native -O3 -DNDEBUG -ffast-math -fomit-frame-pointer
 INCLUDES = -I$(LIBABC_DIR)/src -Iinclude
 LIBS =
 LDFLAGS = -Llib

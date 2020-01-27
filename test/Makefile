@@ -10,8 +10,8 @@ LIBSYMSIM_DIR = ../
 LIBABC_DIR = $(LIBSYMSIM_DIR)/lib/abc
 
 CC = gcc
-DBG = #-g -Wall
-OPT := -march=native -O3 -DNDEBUG -ffast-math -fomit-frame-pointer
+DBG = -g -Wall -fstack-protector-all -pedantic
+OPT = #-march=native -O3 -DNDEBUG -ffast-math -fomit-frame-pointer
 
 INCLUDES = -I$(LIBABC_DIR)/src/ -I$(LIBSYMSIM_DIR)/include -I.
 CFLAGS = -DABC_USE_STDINT_H $(DBG) $(OPT) $(INCLUDES)

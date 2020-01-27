@@ -221,7 +221,7 @@ Gia_Probe_t get_probe_from_lit(machine_state *ms, Gia_Lit_t lit) {
 inline
 void update_probe_from_lit(machine_state *ms, Gia_Probe_t probe, Gia_Lit_t lit) {
   Gia_SweeperProbeUpdate(ms->ntk, probe, lit);
-};
+}
 
 inline
 Gia_Lit_t get_lit_from_probe(machine_state *ms, Gia_Probe_t probe) {
@@ -278,7 +278,6 @@ void probes_free(machine_state *ms, Gia_Probe_t *probes, uintmax_t size) {
   free(probes);
 }
 
-inline
 void collect_probe(machine_state *ms, Gia_Probe_t probe) {
   Vec_IntPush(ms->gc_probes, probe);
   //fprintf(stdout, "[%d -> %d]", probe, get_lit_from_probe(ms, probe));
@@ -1766,8 +1765,9 @@ Gia_Lit_t garbage_collect_ntk(machine_state *ms, Gia_Lit_t cond, uint8_t force_g
     //Verify
     //int success = Gia_SweeperFraig(ms->ntk, ms->gc_probes, "&syn4 -v", 1, 1000, 1, 1);
 
-    //No Verify
-    int success = Gia_SweeperFraig(ms->ntk, ms->gc_probes, "&syn4 -v", 1, 1000, 0, 1);
+    //No Verify -- WAS USING THIS ONE
+    //    int success = Gia_SweeperFraig(ms->ntk, ms->gc_probes, "&syn4 -v", 1, 1000, 0, 1);
+    int success = 1;
 
     //To Dump errors
     //void Gia_SweeperLogicDump(ms->ntk, ms->gc_probes, 1, "sweeper_cond_dump_error.aig");
