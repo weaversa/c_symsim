@@ -1,2 +1,2 @@
 # c_symsim
-C-based shallow embedding of P-code symbolic execution
+C-based symbolic execution of a shallow embedding of Ghidra's P-code.
